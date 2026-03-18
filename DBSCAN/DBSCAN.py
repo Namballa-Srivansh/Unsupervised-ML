@@ -1,0 +1,64 @@
+from sklearn.datasets import load_iris
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import DBSCAN, KMeans
+from sklearn.datasets import make_moons
+ 
+# iris = load_iris()
+
+# X = iris.data
+# y = iris.target
+
+# scaler = StandardScaler()
+# X_scaled = scaler.fit_transform(X)
+
+# # Visualize
+# # sns.scatterplot(x = X_scaled[:, 0], y = X_scaled[:, 2])
+# # plt.show()
+
+# dbscan = DBSCAN(
+#     eps=0.8,
+#     min_samples=5
+# )
+
+# labels = dbscan.fit_predict(X_scaled)
+
+# sns.scatterplot(x = X_scaled[:, 0], y = X_scaled[:, 2], c=labels)
+# plt.show()
+
+
+# ----------------------------------------------------------NON-LINEAR DATA-------------------------------------------------------
+
+X, y = make_moons(
+    n_samples=500,
+    noise=0.05,
+    random_state=42
+)
+
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+# sns.scatterplot(x = X_scaled[:, 0], y = X_scaled[:, 1])
+# plt.show()
+
+# -------------------------------KMEANS---------------------------------------------
+
+# kmeans = KMeans(
+#     n_clusters=2,
+#     random_state=42
+# )
+
+# labels = kmeans.fit_predict(X_scaled)
+
+# ------------------------------DBSCAN-----------------------------------------------
+
+dbscan = DBSCAN(
+    eps=0.5,
+    min_samples=5
+)
+
+labels = dbscan.fit_predict(X_scaled)
+
+sns.scatterplot(x = X_scaled[:, 0], y = X_scaled[:, 1], c=labels)
+plt.show()
